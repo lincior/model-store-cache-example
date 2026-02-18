@@ -1,8 +1,8 @@
 import os
 import runpod
-from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
+from transformers import AutoTokenizer, AutoModelForObjectDetection, pipeline
 
-MODEL_ID = os.environ.get("MODEL_NAME", "microsoft/Phi-3-mini-4k-instruct")
+MODEL_ID = os.environ.get("MODEL_NAME", "yainage90/fashion-object-detection")
 HF_CACHE_ROOT = "/runpod-volume/huggingface-cache/hub"
 
 # Force offline mode to use only cached models
@@ -67,7 +67,7 @@ tokenizer = AutoTokenizer.from_pretrained(
     local_files_only=True,
 )
 
-model = AutoModelForCausalLM.from_pretrained(
+model = AutoModelForObjectDetection.from_pretrained(
     LOCAL_MODEL_PATH,
     trust_remote_code=False,
     torch_dtype="auto",
